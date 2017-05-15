@@ -13,7 +13,7 @@
  
 <p>
   <h3>Milestone #2: May 19th, 2016 </h3>
-  <strong>Goal:</strong> You should have a small prototype by the end of this milestone (I already do, but a couple goals).
+  <strong>Goal:</strong> You should have a small prototype by the end of this milestone.
   <ul>
     <li>Collisions</li>
     <li>Scaling size</li>
