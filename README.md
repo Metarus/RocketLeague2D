@@ -4,7 +4,7 @@
 <h2>Timeline</h2>
  
 <div>
-  <h3>Milestone #1:November May 15th, 2017 </h3>
+  <h3>Milestone #1: May 12th, 2017 </h3>
   <strong>Goal:</strong> Readme
   <ul>
     <li>Which is already done</li>
@@ -12,7 +12,7 @@
 </div>
  
 <p>
-  <h3>Milestone #2: November 30th, 2016 </h3>
+  <h3>Milestone #2: May 19th, 2016 </h3>
   <strong>Goal:</strong> You should have a small prototype by the end of this milestone (I already do, but a couple goals).
   <ul>
     <li>Collisions</li>
@@ -23,10 +23,10 @@
 </p>
  
 <div>
-  <h3>Milestone #3: December 6th, 2016 (For G block)</br>
-  Milestone #3: December 5th, 2015 (For C block) </h3>
+  <h3>Milestone #3: May 29th </h3>
   <strong>Goal:</strong> You should have iterated and improved on your prototype by the end of this milestone.
   <ul>
     <li>Networking</li>
   </ul>
 </div>
+
