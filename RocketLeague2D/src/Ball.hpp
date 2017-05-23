@@ -19,6 +19,7 @@ class Ball
         ~Ball();
         void Update();
         void CheckCollisions(float x, float y, float velX, float velY, int mass);
+        void set(float x, float y, float velX, float velY);
         void setValues();
         void Draw();
         float x();

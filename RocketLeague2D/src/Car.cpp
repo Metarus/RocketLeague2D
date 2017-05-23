@@ -27,13 +27,25 @@ void Car::Update()
     _velocity.y/=1.03;
     _position.x+=_velocity.x;
     _position.y+=_velocity.y;
-    if(_position.x<50||_position.x>ofGetWidth()-50)
+    if(_position.x>ofGetWidth()-50)
     {
         _velocity.x*=-1;
+        _position.x=ofGetWidth()-50;
     }
-    if(_position.y<50||_position.y>ofGetHeight()-50)
+    if(_position.x<50)
+    {
+        _velocity.x*=-1;
+        _position.x=50;
+    }
+    if(_position.y>ofGetHeight()-50)
     {
         _velocity.y*=-1;
+        _position.y=ofGetHeight()-50;
+    }
+    if(_position.y<50)
+    {
+        _velocity.y*=-1;
+        _position.y=50;
     }
 }
 void Car::CheckCollisions(float x, float y, float velX, float velY, int mass)
@@ -45,11 +57,8 @@ void Car::CheckCollisions(float x, float y, float velX, float velY, int mass)
     _tempVel=_velocity;
     if(ofDist(_position.x, _position.y, x, y)<100)
     {
-//        _tempVel.x=(_velocity.x*(_mass-mass)+(2*mass*velX))/(_mass+mass);
-//        _tempVel.y=(_velocity.y*(_mass-mass)+(2*mass*velY))/(_mass+mass);
-        _tempVel=_position-otherVel;
-        _tempVel.normalize();
-        
+        _tempVel.x=(_velocity.x*(_mass-mass)+(2*mass*velX))/(_mass+mass);
+        _tempVel.y=(_velocity.y*(_mass-mass)+(2*mass*velY))/(_mass+mass);
         _tempPos.x+=_tempVel.x;
         _tempPos.y+=_tempVel.y;
     }
