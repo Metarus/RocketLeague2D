@@ -6,23 +6,80 @@ void ofApp::setup(){
 }
 
 //--------------------------------------------------------------
-void ofApp::update(){
-
+void ofApp::update()
+{
+    if(d&&!a)
+    {
+        player.turn(true);
+    }
+    if(!d&&a)
+    {
+        player.turn(false);
+    }
+    if(w&&!s)
+    {
+        player.accel(true);
+    }
+    if(!w&&s)
+    {
+        player.accel(false);
+    }
+    player.Update();
+    ball.Update();
+    player.CheckCollisions(ball.x(), ball.y(), ball.velX(), ball.velY(), ball.mass());
+    ball.CheckCollisions(player.x(), player.y(), player.velX(), player.velY(), player.mass());
+    player.setValues();
+    ball.setValues();
 }
 
 //--------------------------------------------------------------
-void ofApp::draw(){
-
+void ofApp::draw()
+{
+    ofBackground(255);
+    player.Draw();
+    ball.Draw();
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
-
+void ofApp::keyPressed(int key)
+{
+    if(key=='d')
+    {
+        d=true;
+    }
+    if(key=='a')
+    {
+        a=true;
+    }
+    if(key=='w')
+    {
+        w=true;
+    }
+    if(key=='s')
+    {
+        s=true;
+    }
 }
 
 //--------------------------------------------------------------
-void ofApp::keyReleased(int key){
-
+void ofApp::keyReleased(int key)
+{
+    if(key=='d')
+    {
+        d=false;
+    }
+    if(key=='a')
+    {
+        a=false;
+    }
+    if(key=='w')
+    {
+        w=false;
+    }
+    if(key=='s')
+    {
+        s=false;
+    }
 }
 
 //--------------------------------------------------------------

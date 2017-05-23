@@ -1,6 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Car.hpp"
+#include "Ball.hpp"
 
 class ofApp : public ofBaseApp{
 
@@ -20,5 +22,8 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
+    private:
+        bool w, a, s, d;
+        Car player;
+        Ball ball;
 };
