@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "Car.hpp"
 #include "Ball.hpp"
+#include "ofxNetwork.h"
+#include <iostream>
 
 class ofApp : public ofBaseApp{
 
@@ -23,7 +25,10 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     private:
-        bool w, a, s, d;
-        Car player;
+        bool W, A, S, D;
+        Car player[2];
         Ball ball;
+        ofxUDPManager c;
+        ofxUDPManager s;
+        int ID=0;
 };

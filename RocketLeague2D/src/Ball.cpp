@@ -20,37 +20,38 @@ void Ball::Update()
     _position.y+=_velocity.y;
     _velocity.x/=1.03;
     _velocity.y/=1.03;
-    if(_position.x>ofGetWidth()-50)
+    if(_position.x>ofGetWidth()-25)
     {
         _velocity.x*=-1;
-        _position.x=ofGetWidth()-50;
+        _position.x=ofGetWidth()-25;
     }
-    if(_position.x<50)
+    if(_position.x<25)
     {
         _velocity.x*=-1;
-        _position.x=50;
+        _position.x=25;
     }
-    if(_position.y>ofGetHeight()-50)
+    if(_position.y>ofGetHeight()-25)
     {
         _velocity.y*=-1;
-        _position.y=ofGetHeight()-50;
+        _position.y=ofGetHeight()-25;
     }
-    if(_position.y<50)
+    if(_position.y<25)
     {
         _velocity.y*=-1;
-        _position.y=50;
+        _position.y=25;
     }
 }
 void Ball::CheckCollisions(float x, float y, float velX, float velY, int mass)
 {
     _tempPos=_position;
     _tempVel=_velocity;
-    if(ofDist(_position.x, _position.y, x, y)<100)
+    if(ofDist(_position.x, _position.y, x, y)<50)
     {
         _tempVel.x=(_velocity.x*(_mass-mass)+(2*mass*velX))/(_mass+mass);
         _tempVel.y=(_velocity.y*(_mass-mass)+(2*mass*velY))/(_mass+mass);
         _tempPos.x+=_tempVel.x;
         _tempPos.y+=_tempVel.y;
+        ballHit=true;
     }
 }
 void Ball::setValues()
@@ -61,7 +62,7 @@ void Ball::setValues()
 void Ball::Draw()
 {
     ofSetColor(0);
-    ofDrawCircle(_position.x, _position.y, 50);
+    ofDrawCircle(_position.x, _position.y, 25);
 }
 void Ball::set(float x, float y, float velX, float velY)
 {

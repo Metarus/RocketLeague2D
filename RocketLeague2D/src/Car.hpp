@@ -23,13 +23,14 @@ class Car
         void setValues();
         void turn(bool keyA);
         void accel(bool forward);
+        void setVel(float x, float y);
         float x();
         float y();
         float velX();
         float velY();
         int mass();
     private:
-        int _mass=1;
+        int _mass=5;
         float verticalAngle=0;
         float horizontalAngle=1;
         float turnSpeed=0.06;

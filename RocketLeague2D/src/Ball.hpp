@@ -15,6 +15,7 @@
 class Ball
 {
     public:
+        bool ballHit;
         Ball();
         ~Ball();
         void Update();

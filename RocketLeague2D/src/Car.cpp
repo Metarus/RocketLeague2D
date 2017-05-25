@@ -10,16 +10,16 @@
 
 Car::Car()
 {
-    _position.x=ofGetWidth()/4;
-    _position.y=ofGetHeight()/2;
+    _position.x=ofRandom(0, ofGetWidth());
+    _position.y=ofRandom(0, ofGetHeight());
 }
 Car::~Car(){}
 void Car::Draw()
 {
     ofSetColor(255, 100, 100);
-    ofDrawCircle(_position, 50);
+    ofDrawCircle(_position, 25);
     ofSetColor(0);
-    ofDrawLine(_position.x, _position.y, _position.x+horizontalAngle*50, _position.y+verticalAngle*50);
+    ofDrawLine(_position.x, _position.y, _position.x+horizontalAngle*25, _position.y+verticalAngle*25);
 }
 void Car::Update()
 {
@@ -27,25 +27,25 @@ void Car::Update()
     _velocity.y/=1.03;
     _position.x+=_velocity.x;
     _position.y+=_velocity.y;
-    if(_position.x>ofGetWidth()-50)
+    if(_position.x>ofGetWidth()-25)
     {
         _velocity.x*=-1;
-        _position.x=ofGetWidth()-50;
+        _position.x=ofGetWidth()-25;
     }
-    if(_position.x<50)
+    if(_position.x<25)
     {
         _velocity.x*=-1;
-        _position.x=50;
+        _position.x=25;
     }
-    if(_position.y>ofGetHeight()-50)
+    if(_position.y>ofGetHeight()-25)
     {
         _velocity.y*=-1;
-        _position.y=ofGetHeight()-50;
+        _position.y=ofGetHeight()-25;
     }
-    if(_position.y<50)
+    if(_position.y<25)
     {
         _velocity.y*=-1;
-        _position.y=50;
+        _position.y=25;
     }
 }
 void Car::CheckCollisions(float x, float y, float velX, float velY, int mass)
@@ -55,7 +55,7 @@ void Car::CheckCollisions(float x, float y, float velX, float velY, int mass)
     otherVel.y=velY;
     _tempPos=_position;
     _tempVel=_velocity;
-    if(ofDist(_position.x, _position.y, x, y)<100)
+    if(ofDist(_position.x, _position.y, x, y)<50)
     {
         _tempVel.x=(_velocity.x*(_mass-mass)+(2*mass*velX))/(_mass+mass);
         _tempVel.y=(_velocity.y*(_mass-mass)+(2*mass*velY))/(_mass+mass);
@@ -131,6 +131,11 @@ void Car::accel(bool forward)
         _velocity.x-=horizontalAngle;
         _velocity.y-=verticalAngle;
     }
+}
+void Car::setVel(float x, float y)
+{
+    _velocity.x=x;
+    _velocity.y=y;
 }
 
 float Car::x(){return _position.x;}
