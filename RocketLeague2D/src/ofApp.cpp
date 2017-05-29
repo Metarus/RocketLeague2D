@@ -62,6 +62,7 @@ void ofApp::update()
         std::string adder(add.str());
         sending=sending+"|"+adder;
     }
+    c.Send(sending.c_str(), sending.length());
 }
 
 //--------------------------------------------------------------
