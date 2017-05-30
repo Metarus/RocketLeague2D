@@ -26,8 +26,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
     private:
         Ball ball;
+        Car car[2];
         ofxUDPManager c;
         ofxUDPManager s;
-        float carX[2];
-        float carY[2];
 };

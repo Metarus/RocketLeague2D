@@ -23,6 +23,7 @@ class Car
         void setValues();
         void turn(bool keyA);
         void accel(bool forward);
+        void setPos(float x, float y);
         void setVel(float x, float y);
         float x();
         float y();

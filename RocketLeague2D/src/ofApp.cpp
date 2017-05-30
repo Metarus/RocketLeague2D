@@ -5,7 +5,7 @@ void ofApp::setup()
 {
     ofSetCircleResolution(50);
     c.Create();
-    c.Bind(12345);
+    c.Connect("192.168.1.23", 12345);
     c.SetNonBlocking(true);
 }
 
@@ -35,34 +35,58 @@ void ofApp::update()
     player[0].setValues();
     ball.setValues();
     
-    int number;
     float sendingFloats[9];
     if(ball.ballHit)
     {
-        float sendingOtherFloats[9]={static_cast<float>(ID), player[0].x(), player[0].y(), player[0].velX(), player[0].velY(), ball.x(), ball.y(), ball.velX(), ball.velY()};
+        int sendingOtherFloats[9]={ID, static_cast<int>(player[0].x()), static_cast<int>(player[0].y()), static_cast<int>(player[0].velX()), static_cast<int>(player[0].velY()), static_cast<int>(ball.x()), static_cast<int>(ball.y()), static_cast<int>(ball.velX()), static_cast<int>(ball.velY())};
         for(int i=0; i<9; i++)
         {
             sendingFloats[i]=sendingOtherFloats[i];
         }
-        number=9;
     } else
     {
-        float sendingOtherFloats[5]={static_cast<float>(ID), player[0].x(), player[0].y(), player[0].velX(), player[0].velY()};
+        int sendingOtherFloats[9]={ID, static_cast<int>(player[0].x()), static_cast<int>(player[0].y()), static_cast<int>(player[0].velX()), static_cast<int>(player[0].velY()), 0, 0, 0, 0};
         for(int i=0; i<9; i++)
         {
             sendingFloats[i]=sendingOtherFloats[i];
         }
-        number=5;
     }
-    string sending;
-    for(int i=0; i<number; i++)
+    string send;
+    for(int i=0; i<9; i++)
     {
         std::ostringstream add;
         add << sendingFloats[i];
         std::string adder(add.str());
-        sending=sending+"|"+adder;
+        send=send+adder+"|";
     }
-    c.Send(sending.c_str(), sending.length());
+    c.Send(send.c_str(), send.length());
+    
+    char received[100];
+    c.Receive(received, 100);
+    string data(received);
+    std::cout<<data;
+    if(data==""){} else
+    {
+        std::cout<<"is this even working";
+        float receivedData[12];
+        for(int i=0; i<12; i++)
+        {
+            string convert=data.substr(0, data.find_first_of("|"));
+            receivedData[i]=std::stof(convert);
+            data.erase(0, data.find_first_of("|")+1);
+        }
+        ball.set(receivedData[0], receivedData[1], receivedData[2], receivedData[3]);
+        if(ID==1)
+        {
+            player[1].setPos(receivedData[4], receivedData[5]);
+            player[1].setVel(receivedData[6], receivedData[7]);
+        }
+        if(ID==0)
+        {
+            player[1].setPos(receivedData[8], receivedData[9]);
+            player[1].setVel(receivedData[10], receivedData[11]);
+        }
+    }
 }
 
 //--------------------------------------------------------------

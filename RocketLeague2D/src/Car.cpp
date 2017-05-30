@@ -132,6 +132,11 @@ void Car::accel(bool forward)
         _velocity.y-=verticalAngle;
     }
 }
+void Car::setPos(float x, float y)
+{
+    _position.x=x;
+    _position.y=y;
+}
 void Car::setVel(float x, float y)
 {
     _velocity.x=x;

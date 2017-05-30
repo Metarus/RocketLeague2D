@@ -45,6 +45,7 @@ void Ball::CheckCollisions(float x, float y, float velX, float velY, int mass)
 {
     _tempPos=_position;
     _tempVel=_velocity;
+    ballHit=false;
     if(ofDist(_position.x, _position.y, x, y)<50)
     {
         _tempVel.x=(_velocity.x*(_mass-mass)+(2*mass*velX))/(_mass+mass);
